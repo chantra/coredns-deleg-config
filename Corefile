@@ -1,0 +1,34 @@
+example.org:53531 {
+  file zone.example.org
+  dnssec example.org {
+    key file K.+013+63197
+  }
+  deleg  deleg.example.org {
+    responses "deleg.example.org.  86400  IN DELEG  1 ns1.example.com. ( ipv4hint=192.0.2.1 ipv6hint=2001:DB8::1 )"
+  }
+}
+
+deleg.example.org:53532 {
+ file zone.deleg.example.org
+
+  dnssec deleg.example.org {
+      deleg
+      key file K.+013+63197
+  }
+}
+
+deleg.example.com:53533 {
+  file zone.deleg.example.com
+  dnssec deleg.example.com {
+    deleg
+    key file K.+013+63197
+  }
+  deleg  {
+    responses "deleg.example.com.  86400  IN DELEG  1 ns1.deleg.example.org. ( ipv4hint=192.0.2.1 ipv6hint=2001:DB8::1 )"
+  }
+}
+
+
+
+# deleg DS: .    3600    IN      DS      63199 13 2 19E58FCC8C0FF8A505D0686296D8519FFA5CF24FF89D655167789FEAA03FCC28
+# non-deleg DS: .       3600    IN      DS      63197 13 2 A1DEC28DEF466B2FC890F47363A544FCA079C269052915AF81AEF6294DB1E540

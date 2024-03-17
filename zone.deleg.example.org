@@ -1,0 +1,26 @@
+$TTL 1d
+$ORIGIN deleg.example.org.
+
+@   IN  SOA ns1.deleg.example.org. hostmaster.deleg.example.org. (
+            2013080801 ; serial
+            7200       ; refresh (2 hours)
+            3600       ; retry (1 hour)
+            1209600    ; expire (2 weeks)
+            3600       ; minimum (1 hour)
+            )
+
+    IN  NS  ns1.deleg.example.org.
+    IN  NS  ns2.deleg.example.org.
+
+    IN  A 192.0.2.1
+    IN AAAA 2001:db8::1
+    IN MX 10 mail.example.org.
+    IN MX 20 mail2.example.org.
+www IN CNAME www.example.com.
+ns1 IN A 192.0.2.11
+ns2 IN A 192.0.2.12
+ns1 IN AAAA 2001:db8::11
+nd2 IN AAAA 2001:db8::12
+
+
+
